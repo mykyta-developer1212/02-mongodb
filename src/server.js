@@ -15,15 +15,14 @@ app.use(logger);
 app.use(cors());
 app.use(express.json());
 
-app.use(express.static("public"));
-
-app.use("/notes", notesRouter);
+app.use(notesRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
 
 const startServer = async () => {
   await connectMongoDB();
+
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
